@@ -1,11 +1,11 @@
-import express, { urlencoded } from "express";
+import express from "express";
 import dbConnect from "./db/index.js";
-import carRouter from "./routes/car.route.js";
+import router from "./routes/car.route.js";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/v1/car", carRouter);
+app.use("/api/v1/car", router);
 
 dbConnect()
   .then(() => {
