@@ -2,12 +2,18 @@ import express from "express";
 import dbConnect from "./db/index.js";
 import router from "./routes/car.route.js";
 import { config } from "dotenv";
+import cors from "cors";
+
 const app = express();
 
 config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+const corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use("/api/v1/car", router);
 
 dbConnect()
