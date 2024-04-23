@@ -2,13 +2,17 @@ import Car from "../models/carState.model.js";
 
 const getAllCars = async (req, res) => {
   try {
-    const category = req.query.category;
+    const { category } = req.query;
+    const { model } = req.query;
     // Access the 'category' query parameter
     let cars;
 
     // If category is provided, filter cars by category
     if (category) {
       cars = await Car.find({ category: category });
+    }
+    if (model) {
+      cars = await Car.find({ model: model });
     } else {
       cars = await Car.find();
     }
